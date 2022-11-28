@@ -1,8 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import authRoute from './routes/auth.js'
 dotenv.config()
-
 const app = express()
 
 const connect = async () => {
@@ -25,6 +25,9 @@ mongoose.connection.on('connected', () => {
 app.get('/', (req, res) => {
     res.send('GET METHOD')
 })
+
+// MIDDLEWARES
+app.use('/auth', authRoute)
 
 app.listen(5000, () => {
     console.log('Backend is running');
